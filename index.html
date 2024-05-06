@@ -1,0 +1,64 @@
+<script>
+console.log("Rock Paper Scissors")
+let humanScore = 0
+let computerScore = 0
+  
+
+function getComputerChoice(){
+    const randomNumber = Math.floor(Math.random() * 3);
+
+    switch (randomNumber){
+        case 0 :
+        return "rock";
+        case 1 :
+        return "paper";
+        case 2 :
+        return "scissors"
+    }
+}
+
+    console.log(getComputerChoice())
+
+    function getHumanChoice(){
+        let userInput = prompt("Enter your choice: 'rock', 'paper', or 'scissors'").toLowerCase();
+        while (userInput !== 'rock' && userInput !== 'paper' && userInput !== 'scissors') {
+            userInput = prompt("Invalid choice! Please enter 'rock', 'paper', or 'scissors'").toLowerCase();
+    }
+    return userInput;
+    }
+
+    console.log(getHumanChoice());
+
+    function playRound(humanScore , computerScore , humanChoice , computerChoice){
+        humanScore = humanScore.toLowerCase()
+
+        const winningChoices = {" rock" : "scissors",
+                                "paper" : "rock",
+                                "scissors" : "paper"};
+
+           if ( humanChoice === computerChoice ){
+            console.log("its a tie")   
+           }else if(winningChoices[humanChoice]=== computerChoice){
+            console.log ("You  win!"); humanScore + 1
+           }else{
+            console.log("Computer  wins"); computerScore + 1
+           } 
+           return [humanScore, computerScore]                
+ }
+  function playGame(){
+    //let humanScore = 0
+    //let computerScore = 0
+  
+    for (let i = 0; i < 3; i++) {
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+        [humanScore, computerScore] = playRound(humanChoice, computerChoice, humanScore, computerScore);
+    }
+
+    console.log(`Final Scores - You: ${humanScore}, Computer: ${computerScore}`);
+  }
+    
+    playGame()
+
+
+</script>
